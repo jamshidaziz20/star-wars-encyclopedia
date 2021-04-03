@@ -1,6 +1,6 @@
 import Film from './components/Film.js';
 import styled from 'styled-components';
-import FetchAllData from './api/starWarAPI'
+import fetchAllFilms from './api/starWarAPI'
 import {useState, useEffect} from 'react';
 
 export default function App() {
@@ -8,10 +8,11 @@ export default function App() {
   const url = 'https://swapi.dev/api/films';
   const [allFilms, setAllFilms] = useState([]);
 
-  useEffect(() => {
-    setAllFilms(FetchAllData(url));
-    console.log(allFilms);
-  })
+  useEffect(async () => {
+    let films = await fetchAllFilms(url); 
+    setAllFilms(films)
+    // console.log(allFilms);
+  },[])
   return (
     <Container>
       <img src="" alt=""/>
